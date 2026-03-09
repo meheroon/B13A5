@@ -1,11 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GitHub Issue Tracker - Login</title>
+  <link rel="stylesheet" href="./style.css" />
 </head>
-<body>
-    
+<body class="login-body">
+  <main class="login-page">
+    <div class="login-card">
+      <div class="brand-box">
+        <div class="brand-icon">🐙</div>
+        <h1>GitHub Issue Tracker</h1>
+        <p>Track and manage project issues in a simple dashboard</p>
+      </div>
+
+      <form id="loginForm" class="login-form">
+        <label for="username">Username</label>
+        <input type="text" id="username" placeholder="Enter username" />
+
+        <label for="password">Password</label>
+        <input type="password" id="password" placeholder="Enter password" />
+
+        <button type="submit" class="btn-primary">Sign In</button>
+
+        <p class="demo-text">
+          Demo Credentials:<br />
+          Username: <strong>admin</strong><br />
+          Password: <strong>admin123</strong>
+        </p>
+
+        <p id="loginError" class="error-text"></p>
+      </form>
+    </div>
+  </main>
+
+  <script src="./script/login.js"></script>
 </body>
 </html>

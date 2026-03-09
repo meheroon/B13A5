@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GitHub Issue Tracker</title>
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body class="tracker-body">
+  <header class="navbar">
+    <div class="logo-area">
+      <div class="logo-icon">🐙</div>
+      <div>
+        <h2>GitHub Issue Tracker</h2>
+        <p>Programming Hero Assignment</p>
+      </div>
+    </div>
+
+    <div class="nav-right">
+      <div class="search-box">
+        <input type="text" id="searchInput" placeholder="Search issues..." />
+        <button id="searchBtn" class="btn-primary">Search</button>
+      </div>
+      <button id="logoutBtn" class="btn-outline">Logout</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="tab-section">
+      <div class="tabs">
+        <button class="tab-btn active" id="allBtn">All</button>
+        <button class="tab-btn" id="openBtn">Open</button>
+        <button class="tab-btn" id="closedBtn">Closed</button>
+      </div>
+
+      <div class="issue-summary">
+        <div class="summary-left">
+          <span class="summary-icon">📌</span>
+          <span id="issueCount">0 issues</span>
+          <span class="summary-text">currently shown in the dashboard</span>
+        </div>
+
+        <div class="summary-right">
+          <span class="marker open-marker"></span> Open
+          <span class="marker closed-marker"></span> Closed
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div id="spinner" class="spinner hidden"></div>
+      <div id="issuesContainer" class="issues-grid"></div>
+      <p id="emptyMessage" class="empty-message hidden">No issues found.</p>
+    </section>
+  </main>
+
+  <!-- Modal -->
+  <div id="issueModal" class="modal hidden">
+    <div class="modal-overlay" id="modalOverlay"></div>
+    <div class="modal-content">
+      <button id="closeModalBtn" class="modal-close">&times;</button>
+      <div id="modalBody"></div>
+    </div>
+  </div>
+
+  <script src="./script/tracker.js"></script>
+</body>
+</html>
