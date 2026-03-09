@@ -1,3 +1,10 @@
+# GitHub Issue Tracker
+
+## Live Site Link
+https://meheroon.github.io/B13A5/
+
+## GitHub Repository Link
+https://github.com/meheroon/B13A5
 
 ## Project Overview
 This is a simple GitHub Issue Tracker project made for Programming Hero Batch 13 Assignment-05.  
