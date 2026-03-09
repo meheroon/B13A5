@@ -161,7 +161,7 @@ body {
   width: 52px;
   height: 52px;
   border-radius: 12px;
-  background: #4f46e5;
+  /* background: #4f46e5; */
   color: white;
   display: flex;
   justify-content: center;
