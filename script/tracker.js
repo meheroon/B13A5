@@ -13,6 +13,7 @@ const closedBtn = document.getElementById("closedBtn");
 
 const searchInput = document.getElementById("searchInput");
 const searchBtn = document.getElementById("searchBtn");
+const clearSearchBtn = document.getElementById("clearSearchBtn");
 const logoutBtn = document.getElementById("logoutBtn");
 
 const issueModal = document.getElementById("issueModal");
@@ -55,6 +56,21 @@ function formatDate(dateString) {
 
 function updateIssueCount(issues) {
   issueCount.textContent = `${issues.length} issues`;
+}
+function toggleClearButton() {
+  if (searchInput.value.trim() === "") {
+    clearSearchBtn.classList.add("hidden");
+  } else {
+    clearSearchBtn.classList.remove("hidden");
+  }
+}
+
+function resetSearchResults() {
+  searchInput.value = "";
+  toggleClearButton();
+  currentIssues = [...allIssues];
+  setActiveTab(allBtn);
+  renderIssues(currentIssues);
 }
 
 function createLabels(labels) {
@@ -115,6 +131,7 @@ async function loadAllIssues() {
 
     allIssues = result.data || [];
     currentIssues = [...allIssues];
+    setActiveTab(allBtn);
     renderIssues(currentIssues);
   } catch (error) {
     issuesContainer.innerHTML = `<p class="empty-message">Failed to load issues.</p>`;
@@ -124,6 +141,9 @@ async function loadAllIssues() {
 }
 
 function filterIssuesByStatus(status) {
+  searchInput.value = "";
+  toggleClearButton();
+
   if (status === "all") {
     currentIssues = [...allIssues];
   } else {
@@ -137,19 +157,20 @@ function filterIssuesByStatus(status) {
 
 async function handleSearch() {
   const searchText = searchInput.value.trim();
+  toggleClearButton();
 
   if (searchText === "") {
-    currentIssues = [...allIssues];
-    renderIssues(currentIssues);
+    resetSearchResults();
     return;
   }
 
   try {
     showSpinner();
-    const response = await fetch(`${searchIssueUrl}${searchText}`);
+    const response = await fetch(`${searchIssueUrl}${encodeURIComponent(searchText)}`);
     const result = await response.json();
 
     currentIssues = result.data || [];
+    setActiveTab(allBtn);
     renderIssues(currentIssues);
   } catch (error) {
     issuesContainer.innerHTML = `<p class="empty-message">Search failed.</p>`;
@@ -246,11 +267,21 @@ closedBtn.addEventListener("click", function () {
 });
 
 searchBtn.addEventListener("click", handleSearch);
+searchInput.addEventListener("input", function () {
+  toggleClearButton();
+
+  if (searchInput.value.trim() === "") {
+    resetSearchResults();
+  }
+});
 
 searchInput.addEventListener("keydown", function (event) {
   if (event.key === "Enter") {
     handleSearch();
   }
+});
+clearSearchBtn.addEventListener("click", function () {
+  resetSearchResults();
 });
 
 closeModalBtn.addEventListener("click", closeModal);
@@ -258,4 +289,5 @@ modalOverlay.addEventListener("click", closeModal);
 logoutBtn.addEventListener("click", handleLogout);
 
 checkAuth();
+toggleClearButton();
 loadAllIssues();

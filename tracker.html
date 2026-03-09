@@ -17,11 +17,14 @@
     </div>
 
     <div class="nav-right">
-      <div class="search-box">
-        <input type="text" id="searchInput" placeholder="Search issues..." />
-        <button id="searchBtn" class="btn-primary">Search</button>
-      </div>
-      <button id="logoutBtn" class="btn-outline">Logout</button>
+        <div class="search-box">
+            <div class="search-input-wrap">
+            <input type="text" id="searchInput" placeholder="Search issues..." />
+            <button id="clearSearchBtn" class="clear-search hidden" type="button">&times;</button>
+            </div>
+            <button id="searchBtn" class="btn-primary" type="button">Search</button>
+        </div>
+        <button id="logoutBtn" class="btn-outline" type="button">Logout</button>
     </div>
   </header>
 
